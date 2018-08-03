@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <div id="app">
+        <div v-if="login">已经登录</div>
+        <div v-else>没有登录</div>
+        <div v-show="show">显示信息</div>
+    </div>
+    <xmp>
+        <div id="app">
+            <div v-if="login">已经登录</div>
+            <div v-else>没有登录</div>
+            <div id="show">显示信息</div>
+        </div>
+    </xmp>
+    <pre class="prettyprint">
+            var vue = new Vue({
+                el: '#app',
+                data: {
+                    login: false, 
+                    show:false //只是使用了display:none
+                }
+            })
+    </pre>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                login: false,
+                show: false
+            }
+        })
+    </script>
+</body>
+
+</html>
