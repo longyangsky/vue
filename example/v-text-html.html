@@ -13,27 +13,25 @@
 
 <body onload="prettyPrint()">
     <a href="../index.html">首页</a>
-    <h1>v-if与v-else与v-show</h1>
-    v-else需要与v-if配对出现 v-show只是设置了display:none
+    <h1>v-text与v-html指令</h1>
+    v-text与{{}}绑定区别在于v-text如果延迟加载或无绑定的情况下不会显示
     <hr />
     <div id="app">
-        <div v-if="login">已经登录</div>
-        <div v-else>没有登录</div>
-        <div v-show="show">显示信息</div>
+        <div v-text="text"></div>
+        <div v-html="html"></div>
     </div>
     <xmp>
         <div id="app">
-            <div v-if="login">已经登录</div>
-            <div v-else>没有登录</div>
-            <div id="show">显示信息</div>
+            <div v-text="text"></div>
+            <div v-html="html"></div>
         </div>
     </xmp>
     <pre class="prettyprint">
-            var vue = new Vue({
-                el: '#app',
-                data: {
-                    login: false, 
-                    show:false 
+            var  vue= new Vue({
+                el:'#app',
+                data:{
+                   text:'这是一段文本',
+                   html:'<h2>这是一段H2标签</h2>',
                 }
             })
     </pre>
@@ -41,8 +39,8 @@
         var vue = new Vue({
             el: '#app',
             data: {
-                login: false,
-                show: false
+                text: '这是一段文本',
+                html: '<h2>这是一段H2标签</h2>',
             }
         })
     </script>

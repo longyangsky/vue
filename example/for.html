@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>v-for命令</h1>
+    放在需要循环的标签中
+    利用computed对data数据重新计算生成新的data
+    <hr /> 
+    <ul id="app">
+        循环输出数字数组
+        <li v-for="item in sortItems">{{item}}</li>
+        <hr /> 循环输出josn数组
+        <li v-for="item,index in sortJsonImtes">{{index+1}}.{{item.name}},{{item.age}}</li>
+    </ul>
+    <xmp>
+        <ul id="app">
+            循环输出数字数组
+            <li v-for="item in sortItems">{{item}}</li>
+            <hr /> 循环输出josn数组
+            <li v-for="item,index in sortJsonImtes">{{index+1}}.{{item.name}},{{item.age}}</li>
+        </ul>
+    </xmp>
+    <pre class="prettyprint"> 
+            var vue = new Vue({
+                el: '#app',
+                data: { 
+                    items:[5,81,2,57,3,9],
+                    itemsJson:[
+                        {name:'小龙',age:12},
+                        {name:'小杨',age:32},
+                        {name:'小火',age:22},
+                        {name:'小大',age:17}
+                    ]
+                }, 
+                computed:{
+                    sortItems:function(){
+                        return this.items.sort(function(a,b){
+                            return a-b;
+                        });
+                    },
+                    sortJsonImtes:function(){
+                        return this.itemsJson.sort(function(a,b){
+                            return (a.age-b.age) > 0 ? 1:(a.age-b.age)<0?-1:0; 
+                        })
+                    }
+                }
+            }) 
+    </pre>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                items: [5, 81, 2, 57, 3, 9],
+                itemsJson: [{
+                        name: '小龙',
+                        age: 12
+                    },
+                    {
+                        name: '小杨',
+                        age: 32
+                    },
+                    {
+                        name: '小火',
+                        age: 22
+                    },
+                    {
+                        name: '小大',
+                        age: 17
+                    }
+                ]
+            },
+            computed: {
+                sortItems: function () {
+                    return this.items.sort(function (a, b) {
+                        return a - b;
+                    });
+                },
+                sortJsonImtes: function () {
+                    return this.itemsJson.sort(function (a, b) {
+                        return (a.age - b.age) > 0 ? 1 : (a.age - b.age) < 0 ? -1 : 0;
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
