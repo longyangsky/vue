@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>v-pre、v-cloak指令、v-once</h1>
+    v-pre不需要vue渲染，原样输出
+    v-cloak等全部渲染后才显示
+    v-once只渲染一次
+    <hr />
+    <div id="app">
+        <div  v-pre>{{message}}</div> 
+        <div cloak>全部渲染完后才显示,cloak</div> 
+        <div v-once>{{message}}</div>
+        <input type="text" v-model='message'> 
+        {{message}}
+    </div> 
+    <xmp>
+        <div  v-pre>{{message}}</div> 
+        <div cloak>全部渲染完后才显示,cloak</div> 
+        <div v-once>{{message}}</div>
+        <input type="text" v-model='message'> 
+        {{message}}
+    </xmp>
+    <pre class="prettyprint">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world'
+            }
+        })
+    </pre>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world'
+            }
+        })
+    </script>
+</body>
+
+</html>

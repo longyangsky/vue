@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script> 
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>v-on命令绑定事件</h1>
+    v-on:click可以写成@:click
+    <hr /> 
+    <div id="app">
+        本期得分{{score}} 
+        <button v-on:click="addScore">加分</button>
+        <button v-on:click="subScore">减分</button>
+        <br />
+        <input type="text" @keyup.13="enterAddScore" name="" id="" v-model="score2">
+    </div>
+    <xmp>
+            本期得分{{score}} 
+            <button v-on:click="addScore">加分</button>
+            <button v-on:click="subScore">减分</button>
+            <br />
+            <input type="text" @keyup.13="enterAddScore" name="" id="" v-model="score2">
+    </xmp> 
+    <pre class="prettyprint">
+            var  vue= new Vue({
+                el:'#app',
+                data:{
+                   score:1,
+                   score2:2
+                },
+                methods:{
+                    addScore:function(){
+                        this.score++;
+                    },
+                    subScore:function(){
+                        this.score--;
+                    },
+                    enterAddScore:function(){
+                       this.score+=this.score2;
+                    }
+                }
+            }) 
+    </pre>
+    <script type="text/javascript">
+     var  vue= new Vue({
+         el:'#app',
+         data:{
+            score:1,
+            score2:2
+         },
+         methods:{
+             addScore:function(){
+                 this.score++;
+             },
+             subScore:function(){
+                 this.score--;
+             },
+             enterAddScore:function(){
+                this.score+=this.score2;
+             }
+         }
+     })
+    </script>
+</body>
+</html>
