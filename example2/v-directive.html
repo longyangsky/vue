@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>全局指令v-directive与钩子函数</h1>
+    非vue指令,vue提供自定义指令与渲染生命周期
+    <br/> 绑定指令 Vue.directive(指令名称,function)
+    <br/> bind,inserted,update,componentUpdated,unbind(绑定，插入，更新，组件更新完毕，卸载)
+    <br/> Vue.directive({生命周期JSON对象})
+
+    <hr />
+    <div id="app">
+        <div v-ly="color">自定义指令</div>
+        <div v-hook="hook">生命周期</div>
+        <button @click="addHook">add</button>
+        <button onclick="unbind()">解绑</button>
+    </div>
+    <pre class="prettyprint">
+            function unbind() {
+                vue.$destroy();
+            }
+            Vue.directive("ly", function (el, binding) {
+                el.style = "color:" + binding.value;
+            })
+            Vue.directive("hook", {
+                bind: function (el, binding) {
+                    console.log('1-bind');
+                    el.innerText = binding.value;
+                },
+                inserted: function () {
+                    console.log('2-inserted');
+                },
+                update: function (el, binding) {
+                    console.log('3-update');
+                    el.innerText = "值更新为:" + binding.value;
+                },
+                componentUpdated: function () {
+                    console.log('4-componentUpdated');
+                },
+                unbind: function () {
+                    console.log('5-unbind');
+                }
+            })
+            var vue = new Vue({
+                el: '#app',
+                data: {
+                    color: "red",
+                    hook: 1
+                },
+                methods: {
+                    addHook: function () {
+                        this.hook++;
+                    }
+                }
+            })
+    </pre>
+    <script type="text/javascript">
+        function unbind() {
+            vue.$destroy();
+        }
+        Vue.directive("ly", function (el, binding) {
+            el.style = "color:" + binding.value;
+        })
+        Vue.directive("hook", {
+            bind: function (el, binding) {
+                console.log('1-bind');
+                el.innerText = binding.value;
+            },
+            inserted: function () {
+                console.log('2-inserted');
+            },
+            update: function (el, binding) {
+                console.log('3-update');
+                el.innerText = "值更新为:" + binding.value;
+            },
+            componentUpdated: function () {
+                console.log('4-componentUpdated');
+            },
+            unbind: function () {
+                console.log('5-unbind');
+            }
+        })
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                color: "red",
+                hook: 1
+            },
+            methods: {
+                addHook: function () {
+                    this.hook++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
