@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="../assets/js/vue.js"></script>
-    <script src="../assets/js/prettify.js"></script> 
+    <script src="../assets/js/prettify.js"></script>
     <link rel="stylesheet" href="../assets/css/prettify.css">
 </head>
+
 <body onload="prettyPrint()">
     <a href="../index.html">首页</a>
     <h1>computed选项</h1>
     为了不污染原始数据,对数据进行加工
-    <hr /> 
-    <div id="app" >
+    <hr />
+    <div id="app">
+        price: {{price}}
+        <br /> computedPrice:{{newprice}}
+    </div>
+    <xmp>
+        <div id="app">
             price: {{price}}
-            <br />
-            computedPrice:{{newprice}}
-    </div>  
+            <br /> computedPrice:{{newprice}}
+        </div> 
+    </xmp>
 
     <pre class="prettyprint">
             var  vue= new Vue({
@@ -33,18 +40,19 @@
                 }
             })
     </pre>
-    <script type="text/javascript"> 
-     var  vue= new Vue({
-         el:'#app',
-         data:{
-            price:199
-         },
-         computed:{
-             newprice: function(){
-                 return  this.price.toFixed(2); 
-             }
-         }
-     })
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                price: 199
+            },
+            computed: {
+                newprice: function () {
+                    return this.price.toFixed(2);
+                }
+            }
+        })
     </script>
 </body>
+
 </html>

@@ -28,8 +28,20 @@
     <p>
         <button onclick="vue.addPrice()">外部button调用</button>
     </p>
-
-
+    <xmp>
+        <div id="app">
+            price: {{price}}
+            <p>
+                <button @click="addPrice">add</button>
+            </p>
+            <p>
+                <btn @click.native='addPrice(333)'></btn>
+            </p>
+        </div>
+        <p>
+            <button onclick="vue.addPrice()">外部button调用</button>
+        </p>
+    </xmp>
     <pre class="prettyprint">
             var btn = {
                 template: "组件add"
