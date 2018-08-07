@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script> 
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue的父子组件</h1>
+    构造器包含父组件，父组件包含子组件，顺序是这样，注意定义组件的顺序要对
+    <hr /> 
+    <div id="app" >
+        <book name='小蝌蚪找妈妈'> 
+        </book>
+        
+    </div>   
+    <pre class="prettyprint">
+     
+    </pre>
+    <script type="text/javascript">
+    var bookpublishing={
+        template:'<div>出版社:教育出版社</div>'
+     
+    }
+     var bookName={
+                 template:`<div>这是一本书《{{name}}》
+                    <bookpublishing></bookpublishing>
+                 </div>`, 
+                 data:{
+                     pub:"教育出版社"
+                 },
+                 props:["name"],
+                 components:{
+                     "bookpublishing":bookpublishing
+                 }
+             }
+     var  vue= new Vue({
+         el:'#app',
+         components:{ 
+             "book":bookName
+         }
+     })
+    </script>
+</body>
+</html>

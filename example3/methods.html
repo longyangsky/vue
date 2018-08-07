@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>methods选项</h1>
+    重点组件用native调用构造器方法
+    <hr />
+    <div id="app">
+        price: {{price}}
+        <p>
+            <button @click="addPrice">add</button>
+        </p>
+        <p>
+            <btn @click.native='addPrice(333)'></btn>
+        </p>
+    </div>
+    <p>
+        <button onclick="vue.addPrice()">外部button调用</button>
+    </p>
+
+
+    <pre class="prettyprint">
+            var btn = {
+                template: "组件add"
+            }
+            var vue = new Vue({
+                el: '#app',
+                data: {
+                    price: 199
+                },
+                components: {
+                    "btn": btn
+                },
+                methods: {
+                    addPrice: function () {
+                        this.price++;
+                    }
+                }
+            })
+    </pre>
+    <script type="text/javascript">
+        var btn = {
+            template: "<button>组件add</button>"
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                price: 199
+            },
+            components: {
+                "btn": btn
+            },
+            methods: {
+                addPrice: function () {
+                    this.price++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue的componet组件定义属性</h1>
+    <ol>
+        <li>直接属性赋值name="<<三只小猪>>"     
+            <div id="app">
+                <book name="<<三只小猪>>"></book>
+            </div>
+            <xmp>
+                <div id="app">
+                    <book name="<<三只小猪>>"></book>
+                </div>
+            </xmp>
+            <script type="text/javascript">
+                var vue = new Vue({
+                    el: '#app', 
+                    components: {
+                        "book": {
+                            template: "<div style='color:#f00'>这是一本书{{name}}</div>",
+                            props: ["name"]
+                        }
+                    }
+                })
+            </script>  
+            <pre class="prettyprint"> 
+                var  vue= new Vue({
+                    el:'#app',  
+                    components:{
+                        "book":{
+                            template:"<div style='color:#f00'>这是一本书{{name}}</div>",
+                            props:["name"]
+                        }
+                    }
+                })
+           </pre>
+        </li>
+        <li>通过属性绑定  :name="name"
+            <div id="app2">
+                <book :name="name"></book>
+            </div>
+            <xmp>
+                <div id="app2">
+                    <book :name="name"></book>
+                </div>
+            </xmp>
+            <script type="text/javascript">
+                var vue = new Vue({
+                    el: '#app2',
+                    data: {
+                        name: '<<小蝌蚪找妈妈>>'
+                    },
+                    components: {
+                        "book": {
+                            template: "<div style='color:#f00'>这是一本书{{name}}</div>",
+                            props: ["name"]
+                        }
+                    }
+                })
+            </script>
+               <pre class="prettyprint"> 
+                var vue = new Vue({
+                    el: '#app2',
+                    data: {
+                        name: '<<小蝌蚪找妈妈>>'
+                    },
+                    components: {
+                        "book": {
+                            template: "<div style='color:#f00'>这是一本书{{name}}</div>",
+                            props: ["name"]
+                        }
+                    }
+                })
+           </pre>
+        </li>
+    </ol>
+    <hr />
+
+  
+</body>
+
+</html>

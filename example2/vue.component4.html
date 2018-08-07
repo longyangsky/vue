@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue内置component标签提供组件切换</h1>
+    <hr />
+    <div id="app">
+        <component v-bind:is="who"></component>
+        <button @click="changeComponent">切换component</button>
+    </div>
+    <xmp>
+        <div id="app">
+            <component v-bind:is="who"></component>
+            <button @click="changeComponent">切换component</button>
+        </div>
+    </xmp>
+    <pre class="prettyprint">  
+            var componentA={    
+                template:"<div style='color:#f00'>这是componentA</div>"
+            }
+            var componentB={
+                template:"<div style='color:#0f0'>这是componentB</div>" 
+            }
+            var componentC={
+                template:"<div style='color:#00f'>这是componentC</div>" 
+            }
+             var  vue= new Vue({
+                 el:'#app',
+                 data:{
+                     who:"componentA"
+                 },
+                 methods:{
+                    changeComponent:function(){
+                        if( this.who==="componentA") {
+                            this.who="componentB"
+                        }else if(this.who==="componentB"){
+                            this.who="componentC";
+                        }else{
+                            this.who="componentA";
+                        }
+                    }
+                 }
+                 ,
+                 components:{
+                     componentA:componentA,
+                     componentB:componentB,
+                     componentC:componentC
+                 }
+             })
+    </pre>
+    <script type="text/javascript">
+        var componentA = {
+            template: "<div style='color:#f00'>这是componentA</div>"
+        }
+        var componentB = {
+            template: "<div style='color:#0f0'>这是componentB</div>"
+        }
+        var componentC = {
+            template: "<div style='color:#00f'>这是componentC</div>"
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                who: "componentA"
+            },
+            methods: {
+                changeComponent: function () {
+                    if (this.who === "componentA") {
+                        this.who = "componentB"
+                    } else if (this.who === "componentB") {
+                        this.who = "componentC";
+                    } else {
+                        this.who = "componentA";
+                    }
+                }
+            },
+            components: {
+                componentA: componentA,
+                componentB: componentB,
+                componentC: componentC
+            }
+        })
+    </script>
+</body>
+
+</html>
