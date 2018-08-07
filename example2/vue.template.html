@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue的template模板</h1>
+    vue的模板三种实现
+    <ol>
+        <li>直接构造器选项实现
+            <pre class="prettyprint">
+                        var  vue= new Vue({
+                            el:'#app',
+                            data:{
+                               message:'hello world'
+                            },
+                            template:`我来自己模板已经覆盖掉对应的{{属性}}`
+                        })
+              </pre>
+        </li>
+        <li>通过选项绑定外部模板
+            <xmp>
+                <div id="template">
+                    我来自定义模板标签
+                </div>
+            </xmp>
+            <pre class="prettyprint">
+                        var  vue= new Vue({
+                            el:'#app',
+                            data:{
+                               message:'hello world'
+                            },
+                            template:"#template"
+                        })
+              </pre>
+        </li>
+        <li>通过script模板标签,直接HTML中定义
+            <xmp>
+                <script type="text/template" id="scriptTemplate">
+                    <h1>来自引用的模板</h1>
+                </script>
+            </xmp>
+            打包成JS文件外部引用
+            <xmp>
+                <script src="scriptTemplate.js"></script>
+            </xmp>
+        </li>
+    </ol>
+    <hr />
+    <div id="app">{{message}}</div>
+    <div id="template">
+        我来自定义模板标签
+    </div>
+    <script src="scriptTemplate.js"></script>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world'
+            },
+            template: "#scriptTemplate"
+        })
+    </script>
+</body>
+
+</html>

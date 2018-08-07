@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script> 
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue的componet组件</h1>
+    注意vue的组件一定是在vue作用域下也就是需要不过绑定vue后使用，组件必须要有根元素
+    <ol>
+        <li>定义全局组件Vue.component("标签名",{模板名:"模板字符串"})
+            <div id="app" >
+                <ly></ly>
+            </div>   
+            <div id="app2" >
+                <ly></ly>
+            </div>  
+            <pre class="prettyprint">
+                Vue.component("ly",{
+                    template:`<div style='color:#f00;font-size:25px;'>全局组件你好</div>`
+                })
+                 var  vue= new Vue({
+                     el:'#app'
+                 })
+                 var  vue= new Vue({
+                     el:'#app2'
+                 })
+            </pre>
+        </li>
+        <li>内部定义为局部可以定义多个组件new Vue({
+            el:'绑定的标签',
+            components:{
+                "模板名":{
+                    template:"模板字符串"
+                }
+            }
+        })
+            <div id="app3">
+                <ly1></ly1>
+                <ly2></ly2>
+            </div>
+            <pre class="prettyprint">
+                    var vue3=new Vue({
+                        el:'#app3',
+                        components:{
+                            "ly1":{
+                                template:"<div style='color:yellow'>我是局部ly</div>"
+                            },
+                            "ly2":{
+                                template:"<div style='color:blue'>我是局部ly2</div>"
+                            }
+                        }
+                    })
+            </pre>
+        </li>
+    </ol>
+    <hr /> 
+    <script type="text/javascript">
+    Vue.component("ly",{
+        template:`<div style='color:#f00;font-size:25px;'>全局组件你好</div>`
+    })
+     var  vue1= new Vue({
+         el:'#app'
+     })
+     var  vue2= new Vue({
+         el:'#app2'
+     })
+     var vue3=new Vue({
+         el:'#app3',
+         components:{
+             "ly1":{
+                 template:"<div style='color:yellow'>我是局部ly</div>"
+             },
+             "ly2":{
+                 template:"<div style='color:blue'>我是局部ly2</div>"
+             }
+         }
+     })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue.set构造器外赋值</h1>
+    由于javascript无法监视数组下标变化，必须使用vue.set赋值才能刷新dom
+    <hr />
+    <div id="app">
+        <p> count为:{{count}} </p>
+        <p> arrCount为:{{arrCount}}</p> 
+        <button onclick="addCount()">修改count</button>
+        <button onclick="addArrCount()">修改arrCount无效</button>
+        <button onclick="setArrCount()">使用set指令修改arrCount</button>
+    </div>
+    <pre class="prettyprint">
+        function addCount() {
+            vue.count++;
+        } 
+        function addArrCount() { 
+            //直接修改是无效
+            vue.arr[1]=222; 
+        }
+        function setArrCount(){
+            Vue.set(vue.arrCount,1,333); 
+            //修改数组
+            Vue.set(outData.arrCount,2,22);
+            //修改值
+            Vue.set(outData,"count",4);
+            Vue.set(vue,"count",555);
+        }
+        var outData = {
+            count: 1,
+            arrCount: [1, 5, 8, 9]
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: outData
+        })
+    </pre>
+    <script type="text/javascript">
+        function addCount() {
+            vue.count++;
+        } 
+        function addArrCount() { 
+            //直接修改是无效
+            vue.arr[1]=222; 
+        }
+        function setArrCount(){
+            Vue.set(vue.arrCount,1,333); 
+            //修改数组
+            Vue.set(outData.arrCount,2,22);
+            //修改值
+            Vue.set(outData,"count",4);
+            Vue.set(vue,"count",555);
+        }
+        var outData = {
+            count: 1,
+            arrCount: [1, 5, 8, 9]
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: outData
+        })
+    </script>
+</body>
+
+</html>
