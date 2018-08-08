@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue内置的$methods方法</h1>
+    $mount挂载,$destroy销毁,$forceUpdate强制刷新,$netxtTick接受上个事件回调
+    <hr />
+    <div id="app">
+    </div>
+    <p>
+        <button onclick="udpate()">更新</button>
+        <button onclick="reload()">刷新</button>
+        <button onclick="destroy()">卸载</button>
+    </p>
+    <xmp>  
+        <div id="app">
+        </div>
+        <p>
+            <button onclick="udpate()">更新</button>
+            <button onclick="reload()">刷新</button>
+            <button onclick="destroy()">卸载</button>
+        </p>
+    </xmp>
+    <pre class="prettyprint">
+        function reload(){
+            vm.$forceUpdate(); 
+        }
+        function destroy(){
+            vm.$destroy();
+        }
+        function udpate(){
+            vm.message="三只小猪";
+            //当修改了这个值就会触发nextTick
+            vm.$nextTick(function(){ 
+                console.log("update更新完后回调");
+            })
+        }
+        var book=Vue.extend({
+            template:'<div><<{{message}}>></div>',
+            data:function(){
+                return {
+                    message:'小蝌蚪找妈妈'
+                }
+            },
+            mounted:function(){
+                console.log('已经被挂载');
+            },
+            destroyed:function(){
+                console.log('已经被销毁');
+            }
+        })
+        var vm = new book().$mount("#app")
+    </pre>
+    <script type="text/javascript">
+        function reload() {
+            vm.$forceUpdate();
+        }
+
+        function destroy() {
+            vm.$destroy();
+        }
+
+        function udpate() {
+            vm.message = "三只小猪";
+            //当修改了这个值就会触发nextTick
+            vm.$nextTick(function () {
+                console.log("update更新完后回调");
+            })
+        }
+        var book = Vue.extend({
+            template: '<div><<{{message}}>></div>',
+            data: function () {
+                return {
+                    message: '小蝌蚪找妈妈'
+                }
+            },
+            mounted: function () {
+                console.log('已经被挂载');
+            },
+            destroyed: function () {
+                console.log('已经被销毁');
+            }
+        })
+        var vm = new book().$mount("#app")
+    </script>
+</body>
+
+</html>

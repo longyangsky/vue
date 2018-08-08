@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>solt</h1>
+
+    <hr />
+    <div id="app">
+        <book>
+          <span slot="bookName">  {{book.name}}</span> 
+          <span slot="publishing">  {{book.publishing}}</span> 
+        </book>
+    </div>
+    <xmp>
+        <h1 id="hello">{{hello}}</h1>
+    </xmp>
+    <template id="book">
+        <div>
+            <div>图书名称:<slot name="bookName"></slot></div>
+            <div>出版社:<slot name="publishing"></slot></div>
+    </template>
+    <pre class="prettyprint">
+            var book = {
+                template: "#book"
+            }
+            var vue = new Vue({
+                el: '#app',
+                data: {
+                    book:{
+                        name:'小蝌蚪找妈妈',
+                        publishing:"教育出版社"
+                    }
+                },
+                components: {
+                    "book": book
+                }
+            })
+    </pre>
+    <script type="text/javascript">
+        var book = {
+            template: "#book"
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                book:{
+                    name:'小蝌蚪找妈妈',
+                    publishing:"教育出版社"
+                }
+            },
+            components: {
+                "book": book
+            }
+        })
+    </script>
+</body>
+
+</html>
