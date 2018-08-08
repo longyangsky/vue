@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>propsData传值</h1>
+    用于扩展传值,扩展内部需定义接收
+    <hr />
+    <header></header>
+    <xmp>
+        <h1 id="hello">{{hello}}</h1>
+    </xmp>
+    <pre class="prettyprint">
+        var header = Vue.extend({
+            template:`<p>message:{{message}}--接收值{{propsData}}</p>`,
+            data:function(){
+                return {
+                    message:'大家的'
+                }
+            },
+            props:["propsData"]
+        })
+        new header({propsData:{
+           propsData:'1234567'
+        }}).$mount("header")
+    </pre>
+    <script type="text/javascript">
+        var header = Vue.extend({
+            template: `<p>message:{{message}}--接收值{{propsData}}</p>`,
+            data: function () {
+                return {
+                    message: '大家的'
+                }
+            },
+            props: ["propsData"]
+        })
+        new header({
+            propsData: {
+                propsData: '1234567'
+            }
+        }).$mount("header")
+    </script>
+</body>
+
+</html>

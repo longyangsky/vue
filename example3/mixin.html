@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>mixin混入解决构造器扩展</h1>
+    <ol>
+        <li>构造器中使用mixins,mixins:[混入对象]</li>
+        <li>全局minxin(),Vue.mixin,注意没s</li>
+        执行的循序，全局方法最先>构造方法器混入>构造器方法
+    </ol>
+    <hr />
+    <div id="app">
+        <p>num:{{num}}</p>
+        <button @click="add">add</button>
+    </div>
+    <xmp>
+        <div id="app">
+            <p>num:{{num}}</p>
+            <button @click="add">add</button>
+        </div>
+    </xmp>
+    <pre class="prettyprint">
+        Vue.mixin({
+            updated: function () {
+                console.log('全局混入updated,num：' + this.num);
+            }
+        })
+        var updatedMixin = {
+            updated: function () {
+                console.log('外部混入updated,num：' + this.num);
+            }
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function () {
+                    this.num++;
+                }
+            },
+            updated: function () {
+                console.log('构造器的updated,num:' + this.num);
+            },
+            mixins: [updatedMixin]
+        })
+    </pre>
+    <script type="text/javascript">
+        Vue.mixin({
+            updated: function () {
+                console.log('全局混入updated,num：' + this.num);
+            }
+        })
+        var updatedMixin = {
+            updated: function () {
+                console.log('外部混入updated,num：' + this.num);
+            }
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function () {
+                    this.num++;
+                }
+            },
+            updated: function () {
+                console.log('构造器的updated,num:' + this.num);
+            },
+            mixins: [updatedMixin]
+        })
+    </script>
+</body>
+
+</html>

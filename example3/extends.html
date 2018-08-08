@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>extends扩展与mixins混合基本一样,不过extends接收对象而mixins接收的是数组</h1>
+    可以只用new Vue不用赋值得到对象
+    <hr />
+    <div id="app">
+        <p>num:${num}</p>
+        <button @click="add">add</button>
+        <button @click="reduce">reduce</button>
+    </div>
+    <xmp>
+        <div id="app">
+            <p>num:${num}</p>
+            <button @click="add">add</button>
+        </div>
+    </xmp>
+    <pre class="prettyprint">
+            var extendsObj = {
+                updated: function () {
+                    console.log('extends扩展更新');
+                },
+                methods:{
+                    reduce:function(){
+                        this.num--;
+                    }
+                }
+            }
+            var vue = new Vue({
+                el: '#app',
+                data: {
+                    num: 1
+                },
+                updated: function () {
+                    console.log('构造器更新');
+                },
+                methods: {
+                    add: function () {
+                        this.num++;
+                    }
+                },
+                extends: extendsObj,
+                delimiters: ["${", "}"]
+            })
+    </pre>
+    <script type="text/javascript">
+        var extendsObj = {
+            updated: function () {
+                console.log('extends扩展更新');
+            },
+            methods: {
+                reduce: function () {
+                    this.num--;
+                }
+            }
+        }
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            updated: function () {
+                console.log('构造器更新');
+            },
+            methods: {
+                add: function () {
+                    this.num++;
+                }
+            },
+            extends: extendsObj,
+            delimiters: ["${", "}"]
+        })
+    </script>
+</body>
+
+</html>

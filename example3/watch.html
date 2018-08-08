@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/prettify.js"></script>
+    <link rel="stylesheet" href="../assets/css/prettify.css">
+</head>
+
+<body onload="prettyPrint()">
+    <a href="../index.html">首页</a>
+    <h1>vue的watch监控数据变化</h1>
+    <ol>
+        <li>构造函数watch选项实现
+
+            <div id="app">
+                <p> 苹果{{price}}块一斤</p>
+                <p>{{message}}</p>
+                <button @click="priceIncrease">加价</button>
+                <button @click="priceReduction">降价</button>
+            </div>
+            <xmp>
+                <div id="app">
+                    <p> 苹果{{price}}块一斤</p>
+                    <p>{{message}}</p>
+                    <button @click="priceIncrease">加价</button>
+                    <button @click="priceReduction">降价</button>
+                </div>
+            </xmp>
+            <pre class="prettyprint">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                price: 5,
+                message: '价格适中',
+            },
+            methods:{
+                priceIncrease :function(){
+                    if(this.price>=10){
+                        return;
+                    }
+                    this.price++;
+                },
+                priceReduction:function(){
+                    if(this.price<=3){
+                        return;
+                    }
+                    this.price--;
+                }
+            },
+            watch: {
+                "price": function (newval, oldval) {
+                    if (newval >= 6) {
+                        this.message = "价格贵了"
+                    } else if (newval>4&&newval<6) {
+                        this.message = "价格适中";
+                    } else {
+                        this.message = "便宜";
+                    }
+                }
+            }
+        })
+        app.$watch("price", function (newval, oldval) {
+            if (newval >= 6) {
+                this.message = "价格贵了"
+            } else if (newval > 4 && newval < 6) {
+                this.message = "价格适中";
+            } else {
+                this.message = "便宜";
+            }
+        })
+    </pre>
+        </li>
+        <li>vue.$watch("属性名","监控函数(newval,oldval)")实现</li>
+    </ol>
+    <hr />
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                price: 5,
+                message: '价格适中',
+            },
+            methods: {
+                priceIncrease: function () {
+                    if (this.price >= 10) {
+                        return;
+                    }
+                    this.price++;
+                },
+                priceReduction: function () {
+                    if (this.price <= 3) {
+                        return;
+                    }
+                    this.price--;
+                }
+            },
+            watch: {
+                "price": function (newval, oldval) {
+                    if (newval >= 6) {
+                        this.message = "价格贵了"
+                    } else if (newval > 4 && newval < 6) {
+                        this.message = "价格适中";
+                    } else {
+                        this.message = "便宜";
+                    }
+                }
+            }
+        })
+        app.$watch("price", function (newval, oldval) {
+                    if (newval >= 6) {
+                        this.message = "价格贵了"
+                    } else if (newval > 4 && newval < 6) {
+                        this.message = "价格适中";
+                    } else {
+                        this.message = "便宜";
+                    }
+                })
+    </script>
+</body>
+
+</html>
